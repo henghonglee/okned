@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130203051517) do
+ActiveRecord::Schema.define(:version => 20130224073658) do
 
   create_table "fooditems", :id => false, :force => true do |t|
     t.float  "longitude"
@@ -41,10 +41,11 @@ ActiveRecord::Schema.define(:version => 20130203051517) do
     t.string   "titlefull"
     t.string   "subtitle"
     t.text     "images"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
     t.string   "location"
     t.string   "title"
+    t.boolean  "is_post",         :default => true
   end
 
 end
