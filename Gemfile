@@ -7,6 +7,9 @@ gem 'rails', '3.2.11'
 
 gem 'pg'
 gem 'taps'
+gem "json"
+gem "typhoeus"
+gem "quimby"
 
 # Gems used only for assets and not required
 # in production environments by default.
