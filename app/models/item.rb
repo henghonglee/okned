@@ -12,6 +12,7 @@ class Item < ActiveRecord::Base
   attr_accessible :title
   attr_accessible :location
   attr_accessible :is_post
+  attr_accessible :foursquare_venue  
   attr_accessible :subtitle
   serialize :images
 end
