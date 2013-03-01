@@ -110,3 +110,27 @@ foodtypes = ["Ang Ku Kueh","Appam","Ayam Penyet","Apple Strudel","Bak Chang","Ba
    end
    end
  end
+ 
+ task :removeDash => :environment do
+   for item in Item.all
+     a = item.title
+     if a.include?"-"
+        title = a.slice(0,a.index("-")).strip
+        subtitle = a.slice(a.index("-")+1,a.length).strip
+        item.title = title
+        item.subtitle = subtitle
+        item.save
+     end
+   end
+ end
+ 
+ task :removeColonFromSubtitle => :environment do
+   for item in Item.all
+     a = item.subtitle
+     if a.include?":"
+        subtitle = a.slice(a.index(":")+1,a.length).strip
+        item.subtitle = subtitle
+        item.save
+     end
+   end
+ end
