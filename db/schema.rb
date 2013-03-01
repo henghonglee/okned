@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130227072328) do
+ActiveRecord::Schema.define(:version => 20130301033718) do
 
   create_table "fooditems", :id => false, :force => true do |t|
     t.float  "longitude"
@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(:version => 20130227072328) do
     t.string   "title"
     t.boolean  "is_post",         :default => true
     t.string   "foursqure_venue"
+    t.integer  "fs_match_count",  :default => 0
   end
 
 end
