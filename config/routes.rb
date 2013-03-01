@@ -2,6 +2,9 @@ FoodRails::Application.routes.draw do
   
   root :to => 'welcome#index'
   resources :items
+  resources :welcome
+  match "/loaderio-84c5f942ce54fbd6a00301b619e83868" => 'welcome#index'
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
