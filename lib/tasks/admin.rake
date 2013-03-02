@@ -1,3 +1,12 @@
+require "rubygems"
+require "instagram"
+
+  task :googleWebSearch => :environment do
+    require 'googleajax'
+    GoogleAjax.referer = "your_domain_name_here.com"
+    puts GoogleAjax::Search.web("House of Lobster foursquare")[:results][0...3]
+  end
+
 
   task :foursquareForImages => :environment do
     
@@ -149,7 +158,58 @@
      rescue 
     end
    end
+   
+   Instagram.configure do |config|
+     config.client_id = "7c322e5fc93940358f93df9735ed5bec"
+     config.access_token = "18393300.7c322e5.02c4345e7c4141f982acb8cac85a56ee"
+   end
+        for item in Item.where("foursqure_venue IS NOT NULL")
+          begin           
+         puts item.foursqure_venue
+        a = Instagram.location_search(item.foursqure_venue)
+        puts a
+        for i in Instagram.location_recent_media(a.first.id)
+          item.images.unshift(i.images.standard_resolution.url)
+          puts i.images.standard_resolution.url
+        end
+        item.save  
+       rescue
+       end
+      end
+   
+   
   end
+  
+ task :getInstagramPhotosWithFoursquare => :environment do  
+  # All methods require authentication (either by client ID or access token).
+  # To get your Instagram OAuth credentials, register an app at http://instagr.am/oauth/client/register/
+  Instagram.configure do |config|
+    config.client_id = "7c322e5fc93940358f93df9735ed5bec"
+    config.access_token = "18393300.7c322e5.02c4345e7c4141f982acb8cac85a56ee"
+  end
+    # a = Instagram.location_search("4cd2373a3038236a19b3e40e")
+    #     
+    #     i = Instagram.location_recent_media(a.first.id)
+    #       puts i.images.standard_resolution.url
+    #   
+
+       for item in Item.where("foursqure_venue IS NOT NULL")
+         begin           
+        puts item.foursqure_venue
+       a = Instagram.location_search(item.foursqure_venue)
+       puts a
+       for i in Instagram.location_recent_media(a.first.id)
+         item.images.unshift(i.images.standard_resolution.url)
+         puts i.images.standard_resolution.url
+       end
+       item.save  
+      rescue
+      end
+     end
+end
+  
+  
+  
  task :removeColon => :environment do
    for item in Item.all
      a = item.title
