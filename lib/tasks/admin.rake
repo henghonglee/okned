@@ -81,12 +81,8 @@ task :instagramForImages => :environment do
                     item.images << photoitem["url"]
                     puts photoitem["url"]            
                     for low_res in photoitem["sizes"]["items"]
-                       if low_res["width"] == 100
-                        item.low_res_images << low_res["url"]
-                         puts low_res["url"]
-                       end
                        if low_res["width"] == 300
-                        item.mid_res_images << low_res["url"]
+                        item.low_res_images << low_res["url"]
                          puts low_res["url"]
                        end
                      end
@@ -123,12 +119,8 @@ task :instagramForImages => :environment do
                    for photoitem in photogroups["items"]
                      item.images << photoitem["url"]
                      for low_res in photoitem["sizes"]["items"]
-                        if low_res["width"] == 100
-                         item.low_res_images << low_res["url"]
-                          puts low_res["url"]
-                        end
                         if low_res["width"] == 300
-                         item.mid_res_images << low_res["url"]
+                         item.low_res_images << low_res["url"]
                           puts low_res["url"]
                         end
                       end
@@ -179,12 +171,8 @@ task :instagramForImages => :environment do
                           item.images << photoitem["url"]
                            puts photoitem["url"]                 
                            for low_res in photoitem["sizes"]["items"]
-                              if low_res["width"] == 100
-                               item.low_res_images << low_res["url"]
-                                puts low_res["url"]
-                              end
                               if low_res["width"] == 300
-                               item.mid_res_images << low_res["url"]
+                               item.low_res_images << low_res["url"]
                                 puts low_res["url"]
                               end
                             end         
@@ -234,12 +222,8 @@ task :instagramForImages => :environment do
                            item.images << photoitem["url"]
                            puts photoitem["url"]
                            for low_res in photoitem["sizes"]["items"]
-                              if low_res["width"] == 100
-                               item.low_res_images << low_res["url"]
-                                puts low_res["url"]
-                              end
                               if low_res["width"] == 300
-                               item.mid_res_images << low_res["url"]
+                               item.low_res_images << low_res["url"]
                                 puts low_res["url"]
                               end
                             end
