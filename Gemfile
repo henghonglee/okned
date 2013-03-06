@@ -12,6 +12,9 @@ gem "typhoeus"
 gem "quimby"
 gem "instagram"
 gem "googleajax"
+gem "google-api-client"
+gem "google_custom_search_api"
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

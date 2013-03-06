@@ -1,24 +1,65 @@
 require "rubygems"
 require "instagram"
-
-  task :googleWebSearch => :environment do
-    require 'googleajax'
-    GoogleAjax.referer = "your_domain_name_here.com"
-    puts GoogleAjax::Search.web("House of Lobster foursquare")[:results][0...3]
+  task :googleWebSearch2 => :environment do
+    
   end
+  task :googleWebSearch => :environment do
+    # for item in Item.all
+    #     item.foursqure_venue = nil;
+    #     item.save
+    #   end
 
+    for item in Item.where(:is_post => true , :foursqure_venue => nil)
+      item.foursqure_venue = nil;
+      item.flagged = true;
+      puts item.title;
+      begin
+        results = GoogleCustomSearchApi.search(item.title + "")
+        puts results
+        for i in results["items"]
+          puts i["link"]
+        if i["link"].include?"foursquare" 
+          if i["link"].split(/\/(?=[^\/]+(?: |$))| /).second.length == 24
+            item.foursqure_venue = i["link"].split(/\/(?=[^\/]+(?: |$))| /).second
+            puts item.title + "  " + item.foursqure_venue
+            break
+          end
+        end
+      end
+    rescue
+    end
+      item.save
+     end
+   end
+
+task :instagramForImages => :environment do
+  
+  foursquare = Foursquare::Base.new("0I2PNVLT0YDCXPVQCN3IU2XWFLEJYM3WSY42JYCB1CETRUND")    
+  Instagram.configure do |config|
+    config.client_id = "7c322e5fc93940358f93df9735ed5bec"
+    config.access_token = "18393300.7c322e5.02c4345e7c4141f982acb8cac85a56ee"
+  end
+         for item in Item.where("foursqure_venue IS NOT NULL")
+           begin           
+             a = Instagram.location_search(item.foursqure_venue)
+             puts a
+             for i in Instagram.location_recent_media(a.first.id)
+               item.images.unshift(i.images.standard_resolution.url)
+               puts i.images.standard_resolution.url
+             end
+             item.save  
+            rescue
+            end
+        end
+    end
 
   task :foursquareForImages => :environment do
-    
-    
     for item in Item.all
-      item.foursqure_venue = nil;
-      item.save
-    end
+     item.images = [];
+     item.low_res_images = [];
+     item.save
+   end
     
-    
-    
-#    Foursquare.verbose = true
     foursquare = Foursquare::Base.new("0I2PNVLT0YDCXPVQCN3IU2XWFLEJYM3WSY42JYCB1CETRUND")    
     userless =  Foursquare::Base.new("OXI2P5EYFZPKQFPCRNWFADOHPONUAWRBNRRGKBV0WDWTQPSJ", "P0WJY4OUBJ14DL0SBSBUVT3PTEFS24VLJGA4M1UJGJMT3XLD")
     locations = ["Jurong East","Bukit Batok","Bukit Gombak","Choa Chu Kang","Yew Tee","Kranji","Marsiling","Woodlands","Admiralty","Sembawang","Yishun","Khatib","Yio Chu Kang","Ang Mo Kio","Bishan","Braddell","Toa Payoh","Novena","Newton","Orchard","Somerset","Dhoby Ghaut","City Hall","Raffles Place","Marina Bay","Pasir Ris","Tampines","Simei","Tanah Merah","Bedok","Kembangan","Eunos","Lavender","Old Airport","Food Centre","Hawker"]
@@ -26,7 +67,33 @@ require "instagram"
 
     
     for item in Item.all
-      begin
+
+                begin
+        if !item.foursqure_venue.nil?
+            puts "has venue"
+          venue = foursquare.venues.find(item.foursqure_venue)
+
+          for photogroups in venue.json["photos"]["groups"]
+              if photogroups["type"] == "venue"             
+                if photogroups["count"] > 0
+                  item.images = []
+                  for photoitem in photogroups["items"]
+                    item.images << photoitem["url"]
+                    puts photoitem["url"]            
+                    for low_res in photoitem["sizes"]["items"]
+                       if low_res["width"] == 300
+                        item.low_res_images << low_res["url"]
+                         puts low_res["url"]
+                       end
+                     end
+                  end
+                end
+              end
+          end
+          item.save
+          end
+
+
        puts item.title 
        ll ="#{item.latitude},#{item.longitude}"
        a = userless.venues.search(:ll => ll,:limit=>50)
@@ -48,11 +115,15 @@ require "instagram"
            venue = foursquare.venues.find(fsObject.json["id"])
            for photogroups in venue.json["photos"]["groups"]
                if photogroups["type"] == "venue"             
-                 if photogroups["count"] > 0
-                   item.images = []
+                 if photogroups["count"] > 0 and item.images.count == 0
                    for photoitem in photogroups["items"]
                      item.images << photoitem["url"]
-                           puts photoitem["url"]                     
+                     for low_res in photoitem["sizes"]["items"]
+                        if low_res["width"] == 300
+                         item.low_res_images << low_res["url"]
+                          puts low_res["url"]
+                        end
+                      end
                    end
                  end
                end
@@ -96,10 +167,15 @@ require "instagram"
                 for photogroups in venue.json["photos"]["groups"]
                     if photogroups["type"] == "venue"             
                       if photogroups["count"] > 0
-                        item.images = []
                         for photoitem in photogroups["items"]
                           item.images << photoitem["url"]
-                           puts photoitem["url"]                          
+                           puts photoitem["url"]                 
+                           for low_res in photoitem["sizes"]["items"]
+                              if low_res["width"] == 300
+                               item.low_res_images << low_res["url"]
+                                puts low_res["url"]
+                              end
+                            end         
                         end
                       end
                     end
@@ -142,11 +218,15 @@ require "instagram"
                  for photogroups in venue.json["photos"]["groups"]
                      if photogroups["type"] == "venue"             
                        if photogroups["count"] > 0
-                         
-                         item.images = []
                          for photoitem in photogroups["items"]
                            item.images << photoitem["url"]
                            puts photoitem["url"]
+                           for low_res in photoitem["sizes"]["items"]
+                              if low_res["width"] == 300
+                               item.low_res_images << low_res["url"]
+                                puts low_res["url"]
+                              end
+                            end
                          end
                        end
                      end
@@ -155,6 +235,8 @@ require "instagram"
                end
              end
           end
+
+          
      rescue 
     end
    end
@@ -167,10 +249,11 @@ require "instagram"
           begin           
          puts item.foursqure_venue
         a = Instagram.location_search(item.foursqure_venue)
-        puts a
         for i in Instagram.location_recent_media(a.first.id)
           item.images.unshift(i.images.standard_resolution.url)
           puts i.images.standard_resolution.url
+          item.low_res_images.unshift(i.images.low_resolution.url)
+          puts i.images.low_resolution.url
         end
         item.save  
        rescue
@@ -187,20 +270,13 @@ require "instagram"
     config.client_id = "7c322e5fc93940358f93df9735ed5bec"
     config.access_token = "18393300.7c322e5.02c4345e7c4141f982acb8cac85a56ee"
   end
-    # a = Instagram.location_search("4cd2373a3038236a19b3e40e")
-    #     
-    #     i = Instagram.location_recent_media(a.first.id)
-    #       puts i.images.standard_resolution.url
-    #   
-
        for item in Item.where("foursqure_venue IS NOT NULL")
          begin           
         puts item.foursqure_venue
        a = Instagram.location_search(item.foursqure_venue)
-       puts a
        for i in Instagram.location_recent_media(a.first.id)
          item.images.unshift(i.images.standard_resolution.url)
-         puts i.images.standard_resolution.url
+         puts i.images.low_resolution.url
        end
        item.save  
       rescue
