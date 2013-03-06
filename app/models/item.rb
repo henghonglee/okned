@@ -3,6 +3,7 @@ class Item < ActiveRecord::Base
   serialize :description
   serialize :descriptionHTML
   serialize :images
+  serialize :mid_res_images  
   serialize :low_res_images  
   serialize :foodtype
   

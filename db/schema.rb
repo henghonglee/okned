@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130306125735) do
+ActiveRecord::Schema.define(:version => 20130306141154) do
 
   create_table "fooditems", :id => false, :force => true do |t|
     t.float  "longitude"
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(:version => 20130306125735) do
     t.string   "foursqure_venue"
     t.boolean  "flagged",         :default => false
     t.text     "low_res_images"
+    t.text     "mid_res_images"
   end
 
 end

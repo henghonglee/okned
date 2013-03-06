@@ -57,6 +57,7 @@ task :instagramForImages => :environment do
     for item in Item.all
      item.images = [];
      item.low_res_images = [];
+     item.mid_res_images = [];     
      item.save
    end
     
@@ -72,7 +73,6 @@ task :instagramForImages => :environment do
         if !item.foursqure_venue.nil?
             puts "has venue"
           venue = foursquare.venues.find(item.foursqure_venue)
-
           for photogroups in venue.json["photos"]["groups"]
               if photogroups["type"] == "venue"             
                 if photogroups["count"] > 0
@@ -81,8 +81,12 @@ task :instagramForImages => :environment do
                     item.images << photoitem["url"]
                     puts photoitem["url"]            
                     for low_res in photoitem["sizes"]["items"]
-                       if low_res["width"] == 300
+                       if low_res["width"] == 100
                         item.low_res_images << low_res["url"]
+                         puts low_res["url"]
+                       end
+                       if low_res["width"] == 300
+                        item.mid_res_images << low_res["url"]
                          puts low_res["url"]
                        end
                      end
@@ -119,8 +123,12 @@ task :instagramForImages => :environment do
                    for photoitem in photogroups["items"]
                      item.images << photoitem["url"]
                      for low_res in photoitem["sizes"]["items"]
-                        if low_res["width"] == 300
+                        if low_res["width"] == 100
                          item.low_res_images << low_res["url"]
+                          puts low_res["url"]
+                        end
+                        if low_res["width"] == 300
+                         item.mid_res_images << low_res["url"]
                           puts low_res["url"]
                         end
                       end
@@ -171,8 +179,12 @@ task :instagramForImages => :environment do
                           item.images << photoitem["url"]
                            puts photoitem["url"]                 
                            for low_res in photoitem["sizes"]["items"]
-                              if low_res["width"] == 300
+                              if low_res["width"] == 100
                                item.low_res_images << low_res["url"]
+                                puts low_res["url"]
+                              end
+                              if low_res["width"] == 300
+                               item.mid_res_images << low_res["url"]
                                 puts low_res["url"]
                               end
                             end         
@@ -222,8 +234,12 @@ task :instagramForImages => :environment do
                            item.images << photoitem["url"]
                            puts photoitem["url"]
                            for low_res in photoitem["sizes"]["items"]
-                              if low_res["width"] == 300
+                              if low_res["width"] == 100
                                item.low_res_images << low_res["url"]
+                                puts low_res["url"]
+                              end
+                              if low_res["width"] == 300
+                               item.mid_res_images << low_res["url"]
                                 puts low_res["url"]
                               end
                             end
