@@ -20,8 +20,8 @@ class ItemsController < ApplicationController
   def update
     @itemToEdit = Item.find(params[:id])
 #    @itemToEdit.update_attributes(params[:item])
-    @itemToEdit.images.delete_at(params[:delete])
-    @itemToEdit.low_res_images.delete_at(params[:delete])    
+    @itemToEdit.images.delete_at(params[:delete].to_i)
+    @itemToEdit.low_res_images.delete_at(params[:delete].to_i)    
     if @itemToEdit.save
       render :json => {:status=>201 , :success=>true}
     else
