@@ -1,7 +1,7 @@
 class Item < ActiveRecord::Base
   # attr_accessible :title, :body
   serialize :description
-  serialize :descriptionHTML
+#  serialize :descriptionHTML
   serialize :images
   serialize :mid_res_images  
   serialize :low_res_images  
