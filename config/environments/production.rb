@@ -10,16 +10,19 @@ FoodRails::Application.configure do
 
   # Disable Rails's static asset server (Apache or nginx will already do this)
   config.serve_static_assets = true
-  config.static_cache_control = "public, max-age=2592000"
-  
+
   # Compress JavaScripts and CSS
   config.assets.compress = true
+
+  # Force Expires Header to the maximum value
+  config.static_cache_control = "public, max-age=30758400"
 
   # Don't fallback to assets pipeline if a precompiled asset is missed
   config.assets.compile = false
 
   # Generate digests for assets URLs
   config.assets.digest = true
+
 
   # Defaults to nil and saved in location specified by config.assets.prefix
   # config.assets.manifest = YOUR_PATH
