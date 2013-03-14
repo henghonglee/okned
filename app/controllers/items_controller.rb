@@ -1,4 +1,5 @@
 class ItemsController < ApplicationController
+  caches_action :index
   def index
     @foundItems = Item.find_all_by_source(params[:source])
     # @all_items = Item.all

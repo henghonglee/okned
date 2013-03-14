@@ -60,7 +60,7 @@ module FoodRails
     config.assets.version = '1.0'
     
     
-    config.cache_store = :dalli_store
+    
     
   end
 end

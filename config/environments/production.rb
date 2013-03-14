@@ -70,12 +70,6 @@ FoodRails::Application.configure do
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
   
   
-   config.static_cache_control = "public, max-age=2592000"
-  
-   config.action_dispatch.rack_cache = {
-     :verbose      => true,
-     :metastore => "memcached://#{ENV['MEMCACHE_SERVERS']}",
-     :entitystore => "memcached://#{ENV['MEMCACHE_SERVERS']}"#,
-   }
+  config.cache_store = :dalli_store
   
 end
