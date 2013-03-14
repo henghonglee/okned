@@ -73,9 +73,9 @@ FoodRails::Application.configure do
    config.static_cache_control = "public, max-age=2592000"
   
    config.action_dispatch.rack_cache = {
-     :metastore    => Dalli::Client.new,
-     :entitystore  => 'file:tmp/cache/rack/body',
-     :allow_reload => false
+     :verbose      => true,
+     :metastore => "memcached://#{ENV['MEMCACHE_SERVERS']}",
+     :entitystore => "memcached://#{ENV['MEMCACHE_SERVERS']}"#,
    }
   
 end
