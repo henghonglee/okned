@@ -4,6 +4,7 @@ FoodRails::Application.routes.draw do
   resources :items
   resources :welcome
   match "/loaderio-84c5f942ce54fbd6a00301b619e83868" => 'welcome#index'
+  match "/items?source=IEATISHOOTIPOST" => "items#getIEATISHOOTIPOST"
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

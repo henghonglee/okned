@@ -1,5 +1,10 @@
 class ItemsController < ApplicationController
-  #caches_action :index
+  caches_action :getIEATISHOOTIPOST
+  caches_action :getLOVESGFOOD
+  caches_action :getSGFOODONFOOD
+  caches_action :getLADYIRONCHEF
+  caches_action :getDANIELFOODDIARY
+  
   def index
     @foundItems = Item.find_all_by_source(params[:source])
     # @all_items = Item.all
@@ -31,5 +36,26 @@ class ItemsController < ApplicationController
   end
 
   def destroy
+  end
+  
+  def getIEATISHOOTIPOST
+    @foundItems = Item.find_all_by_source("IEATISHOOTIPOST")
+    render :json => @foundItems
+  end
+  def getLOVESGFOOD
+    @foundItems = Item.find_all_by_source("LOVE SG FOOD")
+    render :json => @foundItems
+  end
+  def getSGFOODONFOOD
+    @foundItems = Item.find_all_by_source("SGFOODONFOOT")
+    render :json => @foundItems
+  end
+  def getLADYIRONCHEF
+    @foundItems = Item.find_all_by_source("LADYIRONCHEF")
+    render :json => @foundItems
+  end
+  def getDANIELFOODDIARY
+    @foundItems = Item.find_all_by_source("DANIEL FOOD DIARY")
+    render :json => @foundItems
   end
 end
