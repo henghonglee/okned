@@ -51,7 +51,7 @@ class ItemsController < ApplicationController
     render :json => @foundItems , :content_type => 'text/json'
   end
   def getLADYIRONCHEF
-    @foundItems = Item.find_all_by_source("LADYIRONCHEF")
+    @foundItems = Item.find_all_by_source("LADY IRON CHEF")
     render :json => @foundItems , :content_type => 'text/json'
   end
   def getDANIELFOODDIARY
