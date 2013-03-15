@@ -40,22 +40,22 @@ class ItemsController < ApplicationController
   
   def getIEATISHOOTIPOST
     @foundItems = Item.find_all_by_source("IEATISHOOTIPOST")
-    render :json => @foundItems ,:except=>"descriptionHTML", :content_type => 'text/json'
+    render :json => @foundItems , :content_type => 'text/json'
   end
   def getLOVESGFOOD
     @foundItems = Item.find_all_by_source("LOVE SG FOOD")
-    render :json => @foundItems ,:except=>"descriptionHTML", :content_type => 'text/json'
+    render :json => @foundItems , :content_type => 'text/json'
   end
   def getSGFOODONFOOT
     @foundItems = Item.find_all_by_source("SGFOODONFOOT")
-    render :json => @foundItems ,:except=>"descriptionHTML", :content_type => 'text/json'
+    render :json => @foundItems , :content_type => 'text/json'
   end
   def getLADYIRONCHEF
     @foundItems = Item.find_all_by_source("LADYIRONCHEF")
-    render :json => @foundItems ,:except=>"descriptionHTML", :content_type => 'text/json'
+    render :json => @foundItems , :content_type => 'text/json'
   end
   def getDANIELFOODDIARY
     @foundItems = Item.find_all_by_source("DANIEL FOOD DIARY")
-    render :json => @foundItems ,:except=>"descriptionHTML", :content_type => 'text/json'
+    render :json => @foundItems , :content_type => 'text/json'
   end
 end
