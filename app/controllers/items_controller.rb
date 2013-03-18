@@ -29,6 +29,7 @@ class ItemsController < ApplicationController
 #    @itemToEdit.images.delete_at(params[:delete].to_i)
 #    @itemToEdit.low_res_images.delete_at(params[:delete].to_i)    
     if @itemToEdit.save
+      Rails.cache.clear
       render :json => {:status=>201 , :success=>true}
     else
       render :json => {:status => 404 , :success=>false}
