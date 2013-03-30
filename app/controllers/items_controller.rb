@@ -38,11 +38,32 @@ class ItemsController < ApplicationController
 
   def destroy
   end
-    
-  def getIEATISHOOTIPOST
-    @foundItems = Item.where("source = 'IEATISHOOTIPOST' AND created_at >= :date OR updated_at >= :date", date: params[:id])
-    render :json => @foundItems , :content_type => 'text/json'
+  
+  
+  def allIEATISHOOTIPOST  
+    @foundItems = Item.where("source = 'IEATISHOOTIPOST'")
+    render :json => @foundItems, :content_type => 'text/json'
   end
+  def allLOVESGFOOD  
+    @foundItems = Item.where("source = 'LOVE SG FOOD'")
+    render :json => @foundItems, :content_type => 'text/json'
+  end
+  def allSGFOODONFOOT  
+    @foundItems = Item.where("source = 'SGFOODONFOOT'")
+    render :json => @foundItems, :content_type => 'text/json'
+  end
+  def allLADYIRONCHEF  
+    @foundItems = Item.where("source = 'LADY IRON CHEF'")
+    render :json => @foundItems, :content_type => 'text/json'
+  end
+  def allDANIELFOODDIARY  
+    @foundItems = Item.where("source = 'DANIEL FOOD DIARY'")
+    render :json => @foundItems, :content_type => 'text/json'
+  end
+
+
+
+
   def getLOVESGFOOD
     @foundItems = Item.where("source = 'LOVE SG FOOD' AND created_at >= :date OR updated_at >= :date", date: params[:id])
     #@foundItems = Item.find_all_by_source("LOVE SG FOOD")
@@ -50,7 +71,7 @@ class ItemsController < ApplicationController
   end
   def getSGFOODONFOOT
     @foundItems = Item.where("source = 'SGFOODONFOOT' AND created_at >= :date OR updated_at >= :date", date: params[:id])    
-    render :json => @foundItems , :content_type => 'text/json'
+    render :json => @foundItems,:except => :descriptionHTML , :content_type => 'text/json'
   end
   def getLADYIRONCHEF
     @foundItems = Item.where("source = 'LADY IRON CHEF' AND created_at >= :date OR updated_at >= :date", date: params[:id])        

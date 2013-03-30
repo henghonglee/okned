@@ -1,5 +1,29 @@
 require "rubygems"
 require "instagram"
+
+
+task :createPlaces => :environment do
+  for item in Item.where(:is_post => true)
+    if Place.find_by_foursquare_venue(item.foursqure_venue)
+      p = Place.find_by_foursquare_venue(item.foursqure_venue)
+      p.items << item
+      p.title = item.title
+      p.foursquare_venue = item.foursqure_venue
+      p.save
+    else
+      p = Place.new
+      p.items << item
+      p.title = item.title
+      p.foursquare_venue = item.foursqure_venue
+      p.save
+    end
+  end
+
+end  
+#attr_accessible :current_rating, :title, :subtitle, :description , :images,:foodtype, :foursquare_venue, :latitude, :longitude
+
+
+
   task :googleWebSearch2 => :environment do
     
   end

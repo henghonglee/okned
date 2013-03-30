@@ -9,6 +9,11 @@ FoodRails::Application.routes.draw do
   match "/DANIEL%20FOOD%20DIARY/:id" => "items#getDANIELFOODDIARY"
   match "/LOVE%20SG%20FOOD/:id" => "items#getLOVESGFOOD"
   match "/LADY%20IRON%20CHEF/:id" => "items#getLADYIRONCHEF"        
+  match "/IEATISHOOTIPOST" => "items#allIEATISHOOTIPOST"
+  match "/SGFOODONFOOT" => "items#allSGFOODONFOOT"
+  match "/DANIEL%20FOOD%20DIARY" => "items#allDANIELFOODDIARY"
+  match "/LOVE%20SG%20FOOD" => "items#allLOVESGFOOD"
+  match "/LADY%20IRON%20CHEF" => "items#allLADYIRONCHEF"
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

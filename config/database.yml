@@ -15,7 +15,7 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: Tastebud_development
+  database: Tastebuds_production
   pool: 5
   username: postgres
   password: december5613
