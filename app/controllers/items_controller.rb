@@ -63,10 +63,12 @@ class ItemsController < ApplicationController
 
 
 
-
+  def getIEATISHOOTIPOST
+    @foundItems = Item.where("source = 'IEATISHOOTIPOST' AND created_at >= :date OR updated_at >= :date", date: params[:id])
+    render :json => @foundItems , :content_type => 'text/json'
+  end
   def getLOVESGFOOD
     @foundItems = Item.where("source = 'LOVE SG FOOD' AND created_at >= :date OR updated_at >= :date", date: params[:id])
-    #@foundItems = Item.find_all_by_source("LOVE SG FOOD")
     render :json => @foundItems , :content_type => 'text/json'
   end
   def getSGFOODONFOOT
