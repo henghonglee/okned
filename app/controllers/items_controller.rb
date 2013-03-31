@@ -40,6 +40,10 @@ class ItemsController < ApplicationController
   end
   
   
+  def allFoodPlace
+    @foundItems = Place.all
+    render :json => @foundItems, :content_type => 'text/json'
+  end
   def allIEATISHOOTIPOST  
     @foundItems = Item.where("source = 'IEATISHOOTIPOST'")
     render :json => @foundItems, :content_type => 'text/json'
@@ -62,7 +66,10 @@ class ItemsController < ApplicationController
   end
 
 
-
+  def getFoodPlace
+    @foundItems = Place.where("created_at >= :date OR updated_at >= :date", date: params[:id])
+    render :json => @foundItems , :content_type => 'text/json'
+  end
   def getIEATISHOOTIPOST
     @foundItems = Item.where("source = 'IEATISHOOTIPOST' AND created_at >= :date OR updated_at >= :date", date: params[:id])
     render :json => @foundItems , :content_type => 'text/json'

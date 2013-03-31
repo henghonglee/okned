@@ -14,6 +14,8 @@ FoodRails::Application.routes.draw do
   match "/DANIEL%20FOOD%20DIARY" => "items#allDANIELFOODDIARY"
   match "/LOVE%20SG%20FOOD" => "items#allLOVESGFOOD"
   match "/LADY%20IRON%20CHEF" => "items#allLADYIRONCHEF"
+  match "/allplaces" => "items#allFoodPlace"
+  match "/allplaces/:id" => "items#getFoodPlace"
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
