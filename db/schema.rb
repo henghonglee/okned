@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130329190258) do
+ActiveRecord::Schema.define(:version => 20130331112637) do
 
   create_table "items", :force => true do |t|
     t.string   "source"
@@ -49,6 +49,14 @@ ActiveRecord::Schema.define(:version => 20130329190258) do
     t.float    "longitude"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
+  end
+
+  create_table "ratings", :force => true do |t|
+    t.integer  "score"
+    t.integer  "place_id"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
 end
