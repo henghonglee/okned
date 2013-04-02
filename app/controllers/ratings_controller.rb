@@ -16,7 +16,7 @@ class RatingsController < ApplicationController
   
   def create
     if current_user
-      @rating = Rating.where("place_id == :place_id AND user_id == :user_id",:place_id params[:rating][:place_id] , current_user.id)
+      @rating = Rating.where("place_id == :place_id AND user_id == :user_id",:place_id params[:rating][:place_id] ,:user_id current_user.id)
       if not @rating
           @createdRating = Rating.new(params[:rating])
           @rated_place = Place.find(params[:rating][:place_id])
