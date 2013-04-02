@@ -16,8 +16,8 @@ class RatingsController < ApplicationController
   
   def create
     if current_user
-      @rating = Rating.where("place_id = '#{params[:rating][:place_id]}' AND user_id = '#{current_user.id}'")
-      if @rating.empty?
+      @ratingArr = Rating.where("place_id = '#{params[:rating][:place_id]}' AND user_id = '#{current_user.id}'")
+      if @ratingArr.empty?
           @createdRating = Rating.new(params[:rating])
           @rated_place = Place.find(params[:rating][:place_id])
           @rated_place.ratings << @createdRating
@@ -35,6 +35,7 @@ class RatingsController < ApplicationController
             render :json => {:status => 404 , :success=>false}
           end
       else
+          @rating = @ratingArr.last
           @rating.update_attributes(params[:rating])
           @rated_place = Place.find(params[:rating][:place_id])
           @rating.save
