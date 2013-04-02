@@ -11,6 +11,8 @@ FoodRails::Application.routes.draw do
   resources :ratings
   match "/loaderio-84c5f942ce54fbd6a00301b619e83868" => 'welcome#index'
   match "/newGuestUser" => "user#create"
+  
+  
   match "/IEATISHOOTIPOST/:id" => "items#getIEATISHOOTIPOST"
   match "/SGFOODONFOOT/:id" => "items#getSGFOODONFOOT"
   match "/DANIEL%20FOOD%20DIARY/:id" => "items#getDANIELFOODDIARY"
