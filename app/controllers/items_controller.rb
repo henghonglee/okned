@@ -6,9 +6,7 @@ class ItemsController < ApplicationController
   caches_action :getDANIELFOODDIARY
   
   def index
-    @foundItems = Item.find_all_by_source(params[:source])
-    # @all_items = Item.all
-    render :json => @foundItems
+    render :json => current_user
   end
 
   def create
