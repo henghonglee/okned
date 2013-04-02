@@ -24,8 +24,11 @@ class RatingsController < ApplicationController
       totalrating= totalrating + rating.score
     end
     @rated_place.current_rating = totalrating/@rated_place.ratings.count
-    @rated_place.save
-    render :json => @rated_place , :content_type => 'text/json'
+    if @rated_place.save
+      render :json => {:status=>201 , :success=>true}
+    else
+      render :json => {:status => 404 , :success=>false}
+    end
   end
   
   def show
