@@ -2,12 +2,12 @@ class RatingsController < ApplicationController
   
   def allRatings
     @foundItems = Rating.all
-    render :json => @foundItems, :content_type => 'text/json'
+    render :json => { :time=>Time.now ,:items =>@foundItems} , :content_type => 'text/json'
   end
   
   def getRatings
     @foundItems = Rating.where("created_at >= :date OR updated_at >= :date", date: params[:id])
-    render :json => @foundItems , :content_type => 'text/json'
+    render :json => { :time=>Time.now ,:items =>@foundItems} , :content_type => 'text/json'
   end
   
   
@@ -30,7 +30,7 @@ class RatingsController < ApplicationController
           end
           @rated_place.current_rating = totalrating/@rated_place.ratings.count
           if @rated_place.save
-            render :json => {:status=>201 , :success=>true}
+            render :json => {:status=>201 , :success=>true , :rating => @rated_place}
           else
             render :json => {:status => 404 , :success=>false}
           end
@@ -45,7 +45,7 @@ class RatingsController < ApplicationController
           end
           @rated_place.current_rating = totalrating/@rated_place.ratings.count
           if @rated_place.save
-            render :json => {:status=>201 , :success=>true}
+            render :json => {:status=>201 , :success=>true , :rating => @rated_place}
           else
             render :json => {:status => 404 , :success=>false}
           end
