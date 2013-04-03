@@ -30,7 +30,7 @@ class RatingsController < ApplicationController
           end
           @rated_place.current_rating = totalrating/@rated_place.ratings.count
           if @rated_place.save
-            render :json => {:status=>201 , :success=>true , :rating => @rated_place}
+            render :json => {:status=>201 , :success=>true , :rating => @createdRating}
           else
             render :json => {:status => 404 , :success=>false}
           end
@@ -45,7 +45,7 @@ class RatingsController < ApplicationController
           end
           @rated_place.current_rating = totalrating/@rated_place.ratings.count
           if @rated_place.save
-            render :json => {:status=>201 , :success=>true , :rating => @rated_place}
+            render :json => {:status=>201 , :success=>true , :rating => @rating}
           else
             render :json => {:status => 404 , :success=>false}
           end
