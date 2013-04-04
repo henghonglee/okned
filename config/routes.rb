@@ -6,7 +6,6 @@ FoodRails::Application.routes.draw do
 
   root :to => 'welcome#index'
   resources :items
-  
   resources :welcome
   resources :ratings
   match "/loaderio-84c5f942ce54fbd6a00301b619e83868" => 'welcome#index'
@@ -27,6 +26,7 @@ FoodRails::Application.routes.draw do
   match "/allplaces/:id" => "items#getFoodPlace"
   match "/allratings" => "ratings#allRatings"
   match "/allratings/:id" => "ratings#getRatings"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
