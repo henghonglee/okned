@@ -68,14 +68,18 @@ class RatingsController < ApplicationController
   
   def destroy
     @ratingArr = Rating.where("place_id = '#{params[:rating][:place_id]}' AND user_id = '#{current_user.id}'")
-    rating = @ratingArr.first
-    @rated_place = rating.place
-    rating.delete
-    totalrating = 0 
-    for rating in @rated_place.ratings
-      totalrating= totalrating + rating.score
+    thatrating = @ratingArr.first
+    @rated_place = thatrating.place
+    thatrating.delete
+    if @rated_place.ratings.count > 0
+      totalrating = 0 
+      for rating in @rated_place.ratings
+        totalrating= totalrating + rating.score
+      end
+      @rated_place.current_rating = totalrating/@rated_place.ratings.count
+    else
+      @rated_place.current_rating = 0;
     end
-    @rated_place.current_rating = totalrating/@rated_place.ratings.count
     @rated_place.save
     render :json => {:status => 201, :success => true , :place => @place}
   end
