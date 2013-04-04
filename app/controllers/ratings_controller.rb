@@ -71,7 +71,6 @@ class RatingsController < ApplicationController
     rating = @ratingArr.first
     @place = rating.place
     rating.delete
-    @place.reload!
     
     render :json => {:status => 201, :success => true , :place => @place}
   end
