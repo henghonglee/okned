@@ -81,7 +81,7 @@ class RatingsController < ApplicationController
       @rated_place.current_rating = 0;
     end
     @rated_place.save
-    render :json => {:status => 201, :success => true , :place => @place}
+    render :json => {:status => 201, :success => true , :place => @rated_place}
   end
   
   
