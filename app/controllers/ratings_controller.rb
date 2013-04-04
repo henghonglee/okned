@@ -68,6 +68,11 @@ class RatingsController < ApplicationController
   end
   
   def destroy
+    @ratingArr = Rating.where("place_id = '#{params[:rating][:place_id]}' AND user_id = '#{current_user.id}'")
+    for rating in @ratingArr
+      rating.delete
+    end
+    render :json => {:status => 201, :success => true}
   end
   
   def edit
