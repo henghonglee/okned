@@ -23,6 +23,7 @@ class RatingsController < ApplicationController
           @createdRating = Rating.new(params[:rating])
           @rated_place = Place.find(params[:rating][:place_id])
           @rated_place.ratings << @createdRating
+          @rated_place.rate_count = @rated_place.ratings.count
           current_user.ratings << @createdRating
           current_user.save
           @createdRating.save
@@ -71,6 +72,7 @@ class RatingsController < ApplicationController
     thatrating = @ratingArr.first
     @rated_place = thatrating.place
     thatrating.delete
+    @rated_place.rate_count = @rated_place.ratings.count    
     if @rated_place.ratings.count > 0
       totalrating = 0 
       for rating in @rated_place.ratings
