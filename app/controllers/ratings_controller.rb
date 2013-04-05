@@ -71,22 +71,23 @@ class RatingsController < ApplicationController
     @ratingArr = Rating.where("place_id = '#{params[:rating][:place_id]}' AND user_id = '#{current_user.id}'")
     if @ratingArr.count == 0
       render :json => {:status => 201 , :success => true , :place => Place.find(params[:rating][:place_id])}
-    end 
-    thatrating = @ratingArr.first
-    @rated_place = thatrating.place
-    thatrating.delete
-    @rated_place.rate_count = @rated_place.ratings.count    
-    if @rated_place.ratings.count > 0
-      totalrating = 0 
-      for rating in @rated_place.ratings
-        totalrating= totalrating + rating.score
-      end
-      @rated_place.current_rating = totalrating/@rated_place.ratings.count
     else
-      @rated_place.current_rating = 0;
+      thatrating = @ratingArr.first
+      @rated_place = thatrating.place
+      thatrating.delete
+      @rated_place.rate_count = @rated_place.ratings.count    
+      if @rated_place.ratings.count > 0
+        totalrating = 0 
+        for rating in @rated_place.ratings
+          totalrating= totalrating + rating.score
+        end
+        @rated_place.current_rating = totalrating/@rated_place.ratings.count
+      else
+        @rated_place.current_rating = 0;
+      end
+      @rated_place.save
+      render :json => {:status => 201, :success => true , :place => @rated_place}
     end
-    @rated_place.save
-    render :json => {:status => 201, :success => true , :place => @rated_place}
   end
   
   
