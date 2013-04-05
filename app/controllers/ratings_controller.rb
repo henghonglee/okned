@@ -69,6 +69,9 @@ class RatingsController < ApplicationController
   
   def destroy
     @ratingArr = Rating.where("place_id = '#{params[:rating][:place_id]}' AND user_id = '#{current_user.id}'")
+    if @ratingArr.count == 0
+      render :json => {:status => 201 , :success => true , :place => Place.find(params[:rating][:place_id])}
+    end 
     thatrating = @ratingArr.first
     @rated_place = thatrating.place
     thatrating.delete
