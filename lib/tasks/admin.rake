@@ -8,6 +8,33 @@ require "instagram"
 # r.rate_count =0
 # r.current_rating=0
 # r.save
+
+task :getImagesForPlaces => :environment do
+  for place in Place.all
+      place.images = []
+      place.save
+  end
+  puts "initialized"
+  for place in Place.all
+    puts place
+    if place.items.count > 0
+      for item in place.items
+        puts item
+        for image in item.images
+          puts image
+          if not place.images.include? image
+            place.images << image
+            puts "adding image"
+          end
+        end
+      end
+    end
+    puts "saving"
+    place.save
+  end
+end
+
+
 task :createPlaces => :environment do
   for item in Item.where(:is_post => true)
     if Place.find_by_foursquare_venue(item.foursqure_venue)
