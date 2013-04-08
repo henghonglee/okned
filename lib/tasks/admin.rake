@@ -1,7 +1,13 @@
 require "rubygems"
 require "instagram"
 
-
+# for r in Place.all
+# for rating in r.ratings
+# rating.destroy
+# end
+# r.rate_count =0
+# r.current_rating=0
+# r.save
 task :createPlaces => :environment do
   for item in Item.where(:is_post => true)
     if Place.find_by_foursquare_venue(item.foursqure_venue)

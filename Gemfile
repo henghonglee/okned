@@ -17,6 +17,7 @@ gem "google_custom_search_api"
 gem "dalli"
 gem "devise"
 gem "devise-guests"
+gem 'newrelic_rpm'
 
 # Gems used only for assets and not required
 # in production environments by default.
