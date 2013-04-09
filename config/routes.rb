@@ -26,7 +26,7 @@ FoodRails::Application.routes.draw do
   match "/allplaces/:id" => "items#getFoodPlace"
   match "/allratings" => "ratings#allRatings"
   match "/allratings/:id" => "ratings#getRatings"
-
+  match "/userratings" => "ratings#getRatingsForUser"
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

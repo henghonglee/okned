@@ -10,7 +10,10 @@ class RatingsController < ApplicationController
     render :json => { :time=>Time.now ,:items =>@foundItems} , :content_type => 'text/json'
   end
   
-  
+  def getRatingsForUser
+    @foundItems = current_user.ratings
+    render :json => { :time=>Time.now ,:items =>@foundItems} , :content_type => 'text/json'
+  end
   
   
   def index

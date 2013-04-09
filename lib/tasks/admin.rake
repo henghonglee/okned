@@ -9,6 +9,17 @@ require "instagram"
 # r.current_rating=0
 # r.save
 
+task :resetPlaces => :environment do
+  for place in Place.all
+    place.rate_count = 0
+    place.current_rating = 0
+    place.ratings = [];
+    place.save
+  end
+  Rating.delete_all
+  User.delete_all
+end
+
 task :getImagesForPlaces => :environment do
   for place in Place.all
       place.images = []
