@@ -21,4 +21,5 @@ class Item < ActiveRecord::Base
   attr_accessible :foursquare_venue  
   attr_accessible :fs_match_count
   attr_accessible :subtitle
+  attr_accessible :flagged  
 end

@@ -8,6 +8,7 @@ FoodRails::Application.routes.draw do
   resources :items
   resources :welcome
   resources :ratings
+  resources :places
   match "/loaderio-84c5f942ce54fbd6a00301b619e83868" => 'welcome#index'
   match "/newGuestUser" => "user#create"
   

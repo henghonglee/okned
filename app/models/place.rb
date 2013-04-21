@@ -5,4 +5,5 @@ class Place < ActiveRecord::Base
   has_many :ratings
   serialize :foodtype
   serialize :images
+  serialize :low_res_images
 end
