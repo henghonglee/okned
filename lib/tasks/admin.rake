@@ -52,7 +52,7 @@ end
 
 task :createPlaces => :environment do
 	for item in Item.where(:is_post => true)
-	  if item.foursqure_venue.length != 0
+	  if item.foursqure_venue != NilClass
 		  if Place.find_by_foursquare_venue(item.foursqure_venue)
   			p = Place.find_by_foursquare_venue(item.foursqure_venue)
   			p.items << item
