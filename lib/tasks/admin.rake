@@ -52,23 +52,41 @@ end
 
 task :createPlaces => :environment do
 	for item in Item.where(:is_post => true)
-		if Place.find_by_foursquare_venue(item.foursqure_venue)
-			p = Place.find_by_foursquare_venue(item.foursqure_venue)
-			p.items << item
-			p.title = item.title
-			p.latitude = item.latitude
-			p.longitude = item.longitude
-			if not item.foodtype == ""
-				for foodtype in item.foodtype
-					if not p.foodtype.include?foodtype
-						p.foodtype << foodtype
-					end
-				end
-			end
-			p.foursquare_venue = item.foursqure_venue
-			p.save
+	  if item.foursqure_venue.length != 0
+		  if Place.find_by_foursquare_venue(item.foursqure_venue)
+  			p = Place.find_by_foursquare_venue(item.foursqure_venue)
+  			p.items << item
+  			p.title = item.title
+  			p.latitude = item.latitude
+  			p.longitude = item.longitude
+  			if not item.foodtype == ""
+  				for foodtype in item.foodtype
+  					if not p.foodtype.include?foodtype
+  						p.foodtype << foodtype
+  					end
+  				end
+  			end
+  			p.foursquare_venue = item.foursqure_venue
+  			p.save
+  		else
+  			p = Place.new
+  			p.items << item
+  			p.title = item.title
+  			p.latitude = item.latitude
+  			p.longitude = item.longitude
+  			p.foodtype = []
+  			if not item.foodtype == ""
+  				for foodtype in item.foodtype
+  					if not p.foodtype.include?foodtype
+  						p.foodtype << foodtype
+  					end
+  				end
+  			end
+  			p.foursquare_venue = item.foursqure_venue
+  			p.save
+  		end
 		else
-			p = Place.new
+		  p = Place.new
 			p.items << item
 			p.title = item.title
 			p.latitude = item.latitude
@@ -83,7 +101,8 @@ task :createPlaces => :environment do
 			end
 			p.foursquare_venue = item.foursqure_venue
 			p.save
-		end
+			puts "no venue"
+	  end
 	end
 
 end  
