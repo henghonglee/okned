@@ -52,7 +52,7 @@ end
 
 task :createPlaces => :environment do
 	for item in Item.where(:is_post => true)
-	  if item.foursqure_venue != NilClass
+	  if item.foursqure_venue.class != NilClass
 		  if Place.find_by_foursquare_venue(item.foursqure_venue)
   			p = Place.find_by_foursquare_venue(item.foursqure_venue)
   			p.items << item
@@ -85,7 +85,8 @@ task :createPlaces => :environment do
   			p.foursquare_venue = item.foursqure_venue
   			p.save
   		end
-		else
+		else  
+			puts "no venue"
 		  p = Place.new
 			p.items << item
 			p.title = item.title
@@ -101,7 +102,6 @@ task :createPlaces => :environment do
 			end
 			p.foursquare_venue = item.foursqure_venue
 			p.save
-			puts "no venue"
 	  end
 	end
 
