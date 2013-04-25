@@ -11,7 +11,23 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130412061245) do
+ActiveRecord::Schema.define(:version => 20130425072329) do
+
+  create_table "fooditems", :id => false, :force => true do |t|
+    t.float  "longitude"
+    t.float  "latitude"
+    t.string "descriptionhtml"
+    t.string "source"
+    t.string "rating"
+    t.string "location"
+    t.text   "foodtype"
+    t.string "link",            :null => false
+    t.string "titlefull"
+    t.string "title"
+    t.string "subtitle"
+    t.text   "description"
+    t.text   "images"
+  end
 
   create_table "items", :force => true do |t|
     t.string   "source"
@@ -47,10 +63,11 @@ ActiveRecord::Schema.define(:version => 20130412061245) do
     t.string   "foursquare_venue"
     t.float    "latitude"
     t.float    "longitude"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
     t.integer  "rate_count"
     t.text     "low_res_images"
+    t.boolean  "is_visible",       :default => true
   end
 
   create_table "ratings", :force => true do |t|

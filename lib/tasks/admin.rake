@@ -8,48 +8,6 @@ require "instagram"
 # r.rate_count =0
 # r.current_rating=0
 # r.save
-
-task :resetPlaces => :environment do
-	for place in Place.all
-    place.rate_count = 0
-    place.current_rating = 0
-    place.ratings = [];
-    place.save
-  end
-	Rating.delete_all
-	User.delete_all
-end
-
-
-task :getLowResImagesForPlaces => :environment do
-	for place in Place.all
-		place.images = []
-		place.low_res_images = []
-		place.save
-	end
-	puts "initialized"
-	for place in Place.all
-		puts place
-		if place.items.count > 0
-			for item in place.items
-				puts item
-				imageNumber = 0
-				for image in item.images
-
-					if not place.images.include? image
-						place.images << item.images[imageNumber]
-						place.low_res_images << item.low_res_images[imageNumber]
-						puts "adding image"
-					end
-					imageNumber += 1;
-				end
-			end
-		end
-		puts "saving"
-		place.save
-	end
-end
-
 task :createPlaces => :environment do
 	for item in Item.where(:is_post => true)
 	  if item.foursqure_venue.class != NilClass
@@ -105,8 +63,43 @@ task :createPlaces => :environment do
 	  end
 	end
 
-end  
-#attr_accessible :current_rating, :title, :subtitle, :description , :images,:foodtype, :foursquare_venue, :latitude, :longitude
+end
+
+
+task :setupPlaces => :environment do
+  Rating.delete_all
+	User.delete_all
+	for place in Place.all
+		place.images = []
+		place.low_res_images = []
+		place.rate_count = 0
+    place.current_rating = 0
+    place.ratings = [];
+		place.save
+	end
+	puts "initialized"
+	for place in Place.all
+		puts place
+		if place.items.count > 0
+			for item in place.items
+				puts item
+				imageNumber = 0
+				for image in item.images
+
+					if not place.images.include? image
+						place.images << item.images[imageNumber]
+						place.low_res_images << item.low_res_images[imageNumber]
+						puts "adding image"
+					end
+					imageNumber += 1;
+				end
+			end
+		end
+		puts "saving"
+		place.save
+	end
+end
+
 
 
 
