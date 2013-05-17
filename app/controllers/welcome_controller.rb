@@ -1,5 +1,6 @@
 class WelcomeController < ApplicationController
   def index
+    @usercount = User.all.count
     # respond_to :html , :txt
     # respond_to do |format|
     #       format.html

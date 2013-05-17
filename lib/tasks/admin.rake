@@ -8,6 +8,20 @@ require "instagram"
 # r.rate_count =0
 # r.current_rating=0
 # r.save
+# 
+
+task :pull_images => :environment do
+  f = File.open("imagelist.txt", 'w');
+  for item in Item.where(:is_post => true)
+    if item.images.count > 0
+      for imageurl in item.images
+       f.write("open " + imageurl + "\n") 
+      end
+    end
+  end
+  f.close
+end
+
 task :createPlaces => :environment do
 	for item in Item.where(:is_post => true)
 	  if item.foursqure_venue.class != NilClass
