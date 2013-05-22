@@ -14,4 +14,15 @@ class UserController < ApplicationController
     end
   end
   
+  def update
+    if current_user
+      current_user.email = params[:email]
+      current_user.first_name = params[:first_name]
+      if current_user.save
+        render :json => {:status=>201 , :success=>false}
+      else
+        render :json => { :status => 404 , :success => false , :errors => current_user.errors}
+      end
+    end
+  end
 end
