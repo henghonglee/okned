@@ -18,7 +18,7 @@ gem "dalli"
 gem "devise"
 gem "devise-guests"
 gem 'newrelic_rpm'
-
+gem 'fb_graph'
 
 # Gems used only for assets and not required
 # in production environments by default.

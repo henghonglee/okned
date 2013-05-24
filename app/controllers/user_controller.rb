@@ -14,12 +14,40 @@ class UserController < ApplicationController
     end
   end
   
-  def update
+  
+  def get_user_ratings
+    if current_user
+      render :json => {:status => 201 , :success=>true , :ratings => current_user.ratings }
+    else
+      render :json => { :status => 401 , :success => false}
+    end
+  end
+  
+  def email_has_account
+    @user = User.find_by_email(params[:email])
+    
+    if @user
+      render :json => {:status => 201 , :success=>true , :user => @user , :auth_token => @user.authentication_token}
+    else
+      render :json => { :status => 401 , :success => false}
+    end
+  end
+  def check_user_authentication_status
+    if current_user
+      if current_user.encrypted_password.length > 0
+        render :json => {:status => 201 , :success=>true }
+      else
+        render :json => { :status => 401 , :success => false}
+      end
+    end
+  end
+  
+  def update_user
     if current_user
       current_user.email = params[:email]
-      current_user.first_name = params[:first_name]
+      current_user.password = params[:password]
       if current_user.save
-        render :json => {:status=>201 , :success=>false}
+        render :json => {:status=>201 , :success=>true}
       else
         render :json => { :status => 404 , :success => false , :errors => current_user.errors}
       end

@@ -1,6 +1,6 @@
 FoodRails::Application.routes.draw do
   
-  devise_for :users do
+  devise_for :users , :controllers => { :sessions => "sessions"} do
      get 'users/sign_out', :to => 'devise/sessions#destroy'
    end
 
@@ -9,7 +9,12 @@ FoodRails::Application.routes.draw do
   resources :welcome
   resources :ratings
   resources :places
-  match "/loaderio-84c5f942ce54fbd6a00301b619e83868" => 'welcome#index'
+  match "/email_has_account" => 'user#email_has_account'  
+  match "/get_user_ratings" => 'user#get_user_ratings'  
+  match "/update_user" => 'user#update_user'  
+  match "/check_user_authentication_status" => 'user#check_user_authentication_status'    
+    
+#  match "/loaderio-84c5f942ce54fbd6a00301b619e83868" => 'loader#index'
   match "/newGuestUser" => "user#create"
   match "/update_user" => "user#update" #user can only update himself    
   match "/IEATISHOOTIPOST/:id" => "items#getIEATISHOOTIPOST"
