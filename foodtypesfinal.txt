@@ -1,0 +1,177 @@
+#Thai
+Thai
+#Dessert
+Dessert
+Ice Cream
+Cheng Tng
+Yogurt
+Chocolate
+
+#French
+French
+#Chinese
+Chinese
+Thunder Tea Rice
+Teochew Kueh
+Teochew Porridge
+Cze Char
+zhi char
+Hakka
+Crab
+Fish Soup
+Fishball
+Hor Fun
+Xiao Long Bao
+Fish Head Steamboat
+
+#Vegetarian
+Vegetarian
+Vegan
+
+#Brewery
+Beer 
+Alcohol
+Wine
+Brewery
+
+#Cafe
+Cafe
+Biscuit
+Tea
+Coffee
+Expresso
+Bakery
+Bread
+Specialty Coffee
+
+#Local
+Lor
+Ang Ku Kueh
+Bak Chang
+Carrot Cake
+Char Kway Teow
+Fried Kway Teow
+Hokkien Mee
+Hokkien Prawn Mee
+Bak Chor mee
+Mee Pok
+Minced Meat Noodle
+Ban Mian
+Mee Hoon Kueh
+Beef Kway Teow
+Beef Noodle
+Bak Kut Teh
+Frog Porridge
+Braised Duck
+Chicken Rice
+Claypot
+Curry Mee
+Duck Rice
+Economical Rice
+Hainanese Curry Rice
+Beancurd
+Chwee Kueh
+Rojak
+Cuttlefish Kangkong
+Durian
+Durian Puff
+Goreng Pisang
+Hum Jin Pang
+Ipoh Hor Fun
+KL Hokkien Mee
+Kopi And Toast
+Kueh Tutu
+Kway Chap
+Laksa
+Lor Mee
+Milkshake
+Muah Chee
+Ngoh Hiang
+Oyster Omelette
+Pau
+Popiah
+Porridge
+Prawn Mee
+Pancake
+Pigs Organ Soup
+Prawn Noodle
+Salad
+Satay
+Satay Bee Hoon
+Seafood
+Steamboat
+Soy Sauce Chicken
+Wanton Mee
+Yong Tau Foo
+You Char Kway
+Fried Kway Teow
+Char Kway Teow
+
+#Indian
+Indian
+Biryani
+Appam
+Curry Mee
+Curry Rice
+Curry Chicken
+Fish Head Curry
+Indian Rojak
+Prata
+
+#Korean
+Korean
+Bibimbap
+samgye
+
+#Japanese
+Japanese
+bento
+sushi
+Ramen
+
+#Cantonese
+Hong Kong
+Cantonese
+Roast Duck
+Dim Sum
+Tim sum
+yum cha
+Egg Tart
+
+#American
+American
+Apple Strudel
+Burger
+Fries
+Cheese Cake
+Waffle
+Western
+Steak
+Botak Jones
+
+
+#Malay
+Malay
+Ayam Penyet
+Curry Puff
+Goreng
+Rebus
+Siam
+Soto
+Otah
+Kambing
+Nasi Lemak
+Nasi Padang
+Sup Kambing
+Sup Tulang
+Teh Tarik
+
+#Vietnamese
+Vietnamese
+Pho
+
+#Italian
+Italian
+Spaghetti
+Pizza
+Italian

@@ -10,18 +10,31 @@ require "instagram"
 # r.save
 # 
 
-task :pull_images => :environment do
-  f = File.open("imagelist.txt", 'w');
-  for item in Item.where(:is_post => true)
-    if item.images.count > 0
-      for imageurl in item.images
-       f.write("open " + imageurl + "\n") 
+task :classifyItems => :environment do
+  cls = StuffClassifier::TfIdf.new("Cafe or Brewery or Italian or American or Japanese or Thai or Vietnamese  or Dessert or French or Korean or Chinese or Cantonese or Vegetarian or Indian or Local or Malay");
+      topic = ""
+  File.open("foodtypesfinal.txt", "r").each_line do |line|
+    if line[0]=="#"
+      topic = line[1,line.length-2];
+    else
+      if line.strip! == ""
+      else
+      cls.train(topic,line)
       end
     end
   end
-  f.close
+  
+  for item in Item.all
+    item.train = cls.classify(item.descriptionHTML)
+    item.save
+  end
+  
 end
 
+# task :classifyItems => :environment do
+# #  
+#   
+# end
 task :createPlaces => :environment do
 	for item in Item.where(:is_post => true)
 	  if item.foursqure_venue.class != NilClass

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130425072329) do
+ActiveRecord::Schema.define(:version => 20130605035235) do
 
   create_table "fooditems", :id => false, :force => true do |t|
     t.float  "longitude"
@@ -51,6 +51,8 @@ ActiveRecord::Schema.define(:version => 20130425072329) do
     t.text     "low_res_images"
     t.text     "mid_res_images"
     t.integer  "place_id"
+    t.text     "classified"
+    t.string   "train"
   end
 
   create_table "places", :force => true do |t|
@@ -92,6 +94,8 @@ ActiveRecord::Schema.define(:version => 20130425072329) do
     t.string   "authentication_token"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
+    t.string   "first_name"
+    t.string   "fb_access_token"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
