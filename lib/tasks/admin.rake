@@ -12,7 +12,8 @@ require "instagram"
 
 task :classifyItems => :environment do
   cls = StuffClassifier::TfIdf.new("Cafe or Brewery or Italian or American or Japanese or Thai or Vietnamese  or Dessert or French or Korean or Chinese or Cantonese or Vegetarian or Indian or Local or Malay");
-      topic = ""
+  topic = ""
+  cls.ignore_words = [ 'the', 'my', 'i', 'dont' ]
   File.open("foodtypesfinal.txt", "r").each_line do |line|
     if line[0]=="#"
       topic = line[1,line.length-2];
