@@ -10,7 +10,7 @@ require "instagram"
 # r.save
 # 
 
-task :   => :environment do
+task :classifyItems   => :environment do
   cls = StuffClassifier::TfIdf.new("Cafe or Brewery or Italian or American or Japanese or Thai or Vietnamese  or Dessert or French or Korean or Chinese or Cantonese or Vegetarian or Indian or Local or Malay");
   topic = ""
   cls.ignore_words = [ 'the', 'my', 'i', 'dont' , 'rice']
