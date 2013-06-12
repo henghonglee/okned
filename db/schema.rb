@@ -13,22 +13,6 @@
 
 ActiveRecord::Schema.define(:version => 20130605035235) do
 
-  create_table "fooditems", :id => false, :force => true do |t|
-    t.float  "longitude"
-    t.float  "latitude"
-    t.string "descriptionhtml"
-    t.string "source"
-    t.string "rating"
-    t.string "location"
-    t.text   "foodtype"
-    t.string "link",            :null => false
-    t.string "titlefull"
-    t.string "title"
-    t.string "subtitle"
-    t.text   "description"
-    t.text   "images"
-  end
-
   create_table "items", :force => true do |t|
     t.string   "source"
     t.text     "foodtype"
