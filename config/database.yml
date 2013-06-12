@@ -12,31 +12,22 @@
 # Configure Using Gemfile
 # gem 'pg'
 #
+
 development:
-  adapter: mysql2
-  encoding: utf8
-  reconnect: false
+  adapter: postgresql
+  encoding: unicode
   database: Tastebuds_production
   pool: 5
-  username: root
-  password: password
-  socket: /var/lib/mysql/mysql.sock
+  username: postgres
+  password: december5613
+
 production:
-  adapter: mysql2
-  encoding: utf8
-  reconnect: false
-  database: Tastebuds_production
-  pool: 5
-  username: root
-  password: password
-  socket: /var/lib/mysql/mysql.sock
-# development:
-#   adapter: mysql
-#   encoding: unicode
-#   database: Tastebuds_production
-#   pool: 5
-#   username: postgres
-#   password: december5613
+    adapter: postgresql
+    encoding: unicode
+    database: Tastebuds_production
+    pool: 5
+    username: postgres
+    password: december5613  
 
   # Connect on a TCP socket. Omitted by default since the client uses a
   # domain socket that doesn't need configuration. Windows does not have
