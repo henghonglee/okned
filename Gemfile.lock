@@ -110,9 +110,9 @@ GEM
     multi_json (1.5.0)
     multi_xml (0.5.3)
     multipart-post (1.2.0)
-    mysql2 (0.3.11)
     newrelic_rpm (3.6.0.78)
     orm_adapter (0.4.0)
+    pg (0.15.1)
     polyglot (0.3.3)
     quimby (0.4.5)
       json
@@ -212,8 +212,8 @@ DEPENDENCIES
   instagram
   jquery-rails
   json
-  mysql2
   newrelic_rpm
+  pg
   quimby
   rails (= 3.2.11)
   sass-rails
