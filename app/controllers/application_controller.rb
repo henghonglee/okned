@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
     def redirect_if_old
       if request.host == 'tastebuds-dev.herokuapp.com'
-        redirect_to "http://54.251.168.255#{request.request_uri}", :status => :moved_permanently 
+        redirect_to "http://54.251.168.255#{request.fullpath}", :status => :moved_permanently 
       end
     end
 end
