@@ -21,7 +21,7 @@ gem "devise"
 gem "devise-guests"
 gem 'newrelic_rpm'
 #gem 'fb_graph'
-gem 'stuff-classifier'
+# gem 'stuff-classifier'
 
 # Gems used only for assets and not required
 # in production environments by default.
