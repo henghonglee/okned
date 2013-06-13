@@ -6,8 +6,8 @@ gem 'rails', '3.2.11'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'pg'
-gem 'execjs'
-gem 'therubyracer', :platforms => :ruby
+# gem 'execjs'
+# gem 'therubyracer', :platforms => :ruby
 gem 'taps'
 gem "json"
 gem "typhoeus"
