@@ -2,7 +2,6 @@ class SessionsController <  Devise::SessionsController
   def create
       puts warden.authenticate!
       resource = warden.authenticate!(:scope => resource_name, :recall => "#{controller_path}#failure")
-
       current_user.reset_authentication_token!
       return sign_in_and_redirect(resource_name, resource)
     end
@@ -21,6 +20,7 @@ class SessionsController <  Devise::SessionsController
     end
 
     def failure
+      puts devise_error_messages
       return render:json => {:status => 401, :success => false, :errors => ["Login failed."]}
     end
     
